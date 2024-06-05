@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('Clone') { 
             steps {
-                git url: 'g'
+                withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    // Git checkout or other operations using the bound credentials
+                    git url: 'https://github.com/siddxharth/go-app'
+                }
             }
         }
         stage('Run') { 
